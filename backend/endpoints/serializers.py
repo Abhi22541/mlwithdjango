@@ -7,17 +7,20 @@ class EndpointSerializer(serializers.ModelSerializer):
         read_only_fields=("id", "name", "owner", "createdAt")
         fields=read_only_fields
 
+
 class MlAlgoSerializer(serializers.ModelSerializer):
-    currentStatus=serializers.SerializerMethodField(read_only=True)
 
-    def get_current_status(self, mlAlgorithim):
-        return MlAlgorithimStatus.objects.filter(parentAlgo=mlAlgorithim).latest('createdAt').status
-    
+    currentStatus = serializers.SerializerMethodField(read_only=True)
+
+    def get_currentStatus(self, mlalgorithm):
+        return MlAlgorithimStatus.objects.filter(parentAlgo=mlalgorithm).latest('createdAt').status
+
     class Meta:
-        model=MlAlgorithim
-        read_only_fields=("id", "name", "description", "code", "versions", "owner", "createdAt", "parentEndpoint", "currentStatus")
-        fields=read_only_fields
-
+        model = MlAlgorithim
+        read_only_fields = ("id", "name", "description", "code",
+                            "versions", "owner", "createdAt",
+                            "parentEndpoint", "currentStatus")
+        fields = read_only_fields
 class MlStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model=MlAlgorithimStatus

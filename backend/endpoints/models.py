@@ -11,6 +11,7 @@ class MlAlgorithim(models.Model):
     description=models.CharField(max_length=1000)
     code=models.CharField(max_length=50000)
     versions=models.CharField(max_length=100)
+    owner=models.CharField(max_length=200, null=True)
     createdAt=models.DateTimeField(auto_now_add=True, blank=True)
     parentEndpoint=models.ForeignKey(Endpoint, on_delete=models.CASCADE)
 

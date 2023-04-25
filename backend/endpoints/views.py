@@ -28,9 +28,6 @@ class MLAlgorithmStatusViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin,
             with transaction.atomic():
                 instance = serializer.save(active=True)
                 deactivateoldstatus(instance)
-
-
-
         except Exception as e:
             raise APIException(str(e))
 
